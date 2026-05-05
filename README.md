@@ -3,10 +3,10 @@ A lightweight Host-Based Intrusion Detection System (HIDS) for Linux that monito
 
 ## Features
 ### Real-time Monitoring
-*SSH authentication (success/failure)
-*Sudo / privilege escalation
-*User account modifications
-*Sensitive file access (/etc/shadow, /root, SSH keys)
+* SSH authentication (success/failure)
+* Sudo / privilege escalation
+* User account modifications
+* Sensitive file access (/etc/shadow, /root, SSH keys)
 ### Threat Detection (MITRE ATT&CK)
 *Brute force attacks (T1110)
 *Valid account abuse (T1078)
