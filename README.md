@@ -25,7 +25,8 @@ Integration with Fail2Ban (IP banning)
 Telegram Bot notifications
 
 ## Architecture
-''' journalctl + auditd + fail2ban logs
+```
+journalctl + auditd + fail2ban logs
             ↓
         Detection Engine (Python)
             ↓
@@ -33,8 +34,8 @@ Telegram Bot notifications
             ↓
          Alerting (Telegram)
             ↓
-     Response (Fail2Ban Ban) '''
-
+     Response (Fail2Ban Ban) 
+```
 ### Tech Stack
 Python
 Linux (journalctl, auditd)
