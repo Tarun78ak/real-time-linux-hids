@@ -3,19 +3,18 @@ A lightweight Host-Based Intrusion Detection System (HIDS) for Linux that monito
 
 ## Features
 ### Real-time Monitoring
-SSH authentication (success/failure)
-Sudo / privilege escalation
-User account modifications
-Cron jobs (persistence)
-Sensitive file access (/etc/shadow, /root, SSH keys)
+*SSH authentication (success/failure)
+*Sudo / privilege escalation
+*User account modifications
+*Sensitive file access (/etc/shadow, /root, SSH keys)
 ### Threat Detection (MITRE ATT&CK)
-Brute force attacks (T1110)
-Valid account abuse (T1078)
-Privilege escalation (T1068)
-Persistence (T1053, T1098)
-Credential access (T1003)
-Defense evasion (T1070)
-Recon & suspicious commands
+*Brute force attacks (T1110)
+*Valid account abuse (T1078)
+*Privilege escalation (T1068)
+*Persistence (T1053, T1098)
+*Credential access (T1003)
+*Defense evasion (T1070)
+*Recon & suspicious commands
 ### Correlation Engine
 Detects multi-stage attacks
 (Brute force → Successful login)
@@ -74,14 +73,14 @@ Restart:
 `sudo systemctl restart fail2ban`
 4. Configure auditd Rules
 `sudo nano /etc/audit/rules.d/audit.rules`
-
+```
 -a always,exit -F arch=b64 -S execve -k exec_log
 -a always,exit -F arch=b32 -S execve -k exec_log
 
 -w /etc/shadow -p rwxa -k shadow_access
 -w /root -p rwxa -k root_access
 -w /home/*/.ssh/authorized_keys -p rwxa -k ssh_key_access
-
+```
 Load rules:
 ```
 sudo augenrules --load
@@ -89,9 +88,9 @@ sudo systemctl restart auditd
 ```
 
 6. Telegram Setup
-Create bot via @BotFather
-Get TOKEN
-Get CHAT ID
+*Create bot via @BotFather
+*Get TOKEN
+*Get CHAT ID
 
 Update script:
 ```
