@@ -8,15 +8,15 @@ A lightweight Host-Based Intrusion Detection System (HIDS) for Linux that monito
 * User account modifications
 * Sensitive file access (/etc/shadow, /root, SSH keys)
 ### Threat Detection (MITRE ATT&CK)
-*Brute force attacks (T1110)
-*Valid account abuse (T1078)
-*Privilege escalation (T1068)
-*Persistence (T1053, T1098)
-*Credential access (T1003)
-*Defense evasion (T1070)
-*Recon & suspicious commands
+* Brute force attacks (T1110)
+* Valid account abuse (T1078)
+* Privilege escalation (T1068)
+* Persistence (T1053, T1098)
+* Credential access (T1003)
+* Defense evasion (T1070)
+* Recon & suspicious commands
 ### Correlation Engine
-Detects multi-stage attacks
+Detects multi-stage attacks<br>
 (Brute force → Successful login)
 ### Automated Response Validation
 Integration with Fail2Ban (IP banning)
@@ -35,11 +35,6 @@ journalctl + auditd + fail2ban logs
             ↓
      Response (Fail2Ban Ban) 
 ```
-### Tech Stack
-Python
-Linux (journalctl, auditd)
-Fail2Ban
-Telegram Bot API
 
 ## Setup & Installation
 1. Install Dependencies
@@ -61,15 +56,14 @@ sudo systemctl start auditd
 3. Configure Fail2Ban
 
 `sudo nano /etc/fail2ban/jail.local`
-
+```
 [sshd]
 enabled = true
 maxretry = 5
 findtime = 120
 bantime = 300
-
+```
 Restart:
-
 `sudo systemctl restart fail2ban`
 4. Configure auditd Rules
 `sudo nano /etc/audit/rules.d/audit.rules`
@@ -88,9 +82,9 @@ sudo systemctl restart auditd
 ```
 
 6. Telegram Setup
-*Create bot via @BotFather
-*Get TOKEN
-*Get CHAT ID
+* Create bot via @BotFather
+* Get TOKEN
+* Get CHAT ID
 
 Update script:
 ```
@@ -142,7 +136,7 @@ ps aux
 ### Log Clearing
 `sudo journalctl --vacuum-time=1s`
 ### Fail2Ban Management
-Check Status
+Check Status of IPs Banned<br>
 `sudo fail2ban-client status sshd`
 ### Unban IP
 `sudo fail2ban-client set sshd unbanip <IP>`
