@@ -61,7 +61,7 @@ sudo systemctl start auditd
 ```
 3. Configure Fail2Ban
 
-`code`sudo nano /etc/fail2ban/jail.local
+`sudo nano /etc/fail2ban/jail.local`
 
 [sshd]
 enabled = true
@@ -71,10 +71,9 @@ bantime = 300
 
 Restart:
 
-`code` sudo systemctl restart fail2ban
-
+`sudo systemctl restart fail2ban`
 4. Configure auditd Rules
-`code`sudo nano /etc/audit/rules.d/audit.rules
+`sudo nano /etc/audit/rules.d/audit.rules`
 
 -a always,exit -F arch=b64 -S execve -k exec_log
 -a always,exit -F arch=b32 -S execve -k exec_log
@@ -101,13 +100,13 @@ CHAT_ID = "YOUR_CHAT_ID"
 ```
 ### Usage
 
-`code`sudo python3 monitor.py
+`sudo python3 monitor.py`
 
 ### Testing & Simulation
 
 Use another machine (recommended) to simulate attacks:
 
-`code`ssh testuser@<KALI_IP>
+`ssh testuser@<KALI_IP>`
 
 ### Test Commands
 ```
@@ -142,11 +141,11 @@ ip a
 ps aux
 ```
 ### Log Clearing
-`code`sudo journalctl --vacuum-time=1s
+`sudo journalctl --vacuum-time=1s`
 ### Fail2Ban Management
 Check Status
-`code`sudo fail2ban-client status sshd
+`sudo fail2ban-client status sshd`
 ### Unban IP
-`code`sudo fail2ban-client set sshd unbanip <IP>
+`sudo fail2ban-client set sshd unbanip <IP>`
 ### Detection Flow
-''' Logs → Detection → Correlation → Alert → Response
+`Logs → Detection → Correlation → Alert → Response`
